@@ -4,13 +4,6 @@ const MongoClient = require('mongodb').MongoClient
 const PORT = 8000;
 require('dotenv').config;
 
-
-app.set('view engine', 'ejs')
-app.use(express.static('public'))
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json());
-app.use(cors());
-
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'treasuregames'
@@ -22,6 +15,11 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
         db = client.db(dbName)
     })
 
+app.set('view engine', 'ejs')
+app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
+
 app.get('/', async (request, response) => {
   
   const gameItems = await db.collection('games').find().toArray();
@@ -31,7 +29,6 @@ app.get('/', async (request, response) => {
 });
 
 app.post('/addGame', (request, response) => {
-  console.log(request.body);
   db.collection('games').insertOne({name: request.body.gameName})
   .then(result => {
       console.log('Game Added')
