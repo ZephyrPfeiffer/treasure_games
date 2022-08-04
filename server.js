@@ -22,7 +22,7 @@ app.use(express.json());
 
 app.get('/', async (request, response) => {
   
-  const gameItems = await db.collection('games').find().toArray();
+  const gameItems = await db.collection('games').find().toArray()
 
   response.render('index.ejs', {items: gameItems});
 
