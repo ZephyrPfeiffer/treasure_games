@@ -9,9 +9,10 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
+app.use(cors());
 
 let db,
-    dbConnectionStr = 'mongodb+srv://Fur:Chip@cluster0.mr8yxpq.mongodb.net/?retryWrites=true&w=majority',
+    dbConnectionStr = DB_STRING,
     dbName = 'treasuregames'
 
 
