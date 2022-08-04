@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors());
 
 let db,
-    dbConnectionStr = DB_STRING,
+    dbConnectionStr = process.env.DB_STRING,
     dbName = 'treasuregames'
 
 
