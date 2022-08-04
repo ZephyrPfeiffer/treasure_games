@@ -5,11 +5,11 @@ const PORT = 8000;
 require('dotenv').config;
 
 let db,
-    dbConnectionStr = process.env.DB_STRING,
+    //dbConnectionStr = process.env.DB_STRING,
     dbName = 'treasuregames'
 
 
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
+MongoClient.connect('mongodb+srv://Fur:Chip@cluster0.mr8yxpq.mongodb.net/?retryWrites=true&w=majority', { useUnifiedTopology: true })
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
